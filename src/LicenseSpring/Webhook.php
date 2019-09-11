@@ -10,8 +10,6 @@ class Webhook {
     private static $order_successful_msg = "License keys successfuly activated.";
     private static $order_error_msg = "There was a problem activating your license keys. Please contact LicenseSpring.";
 
-    private static $backoff_steps = 10, $backoff_wait_time = 100; # in miliseconds
-
     private static $api_host_prod = "https://api.licensespring.com";
     private static $api_host_dev = "https://api-dev.licensespring.com";
     private static $license_endpoint = "/api/v3/webhook/license";
