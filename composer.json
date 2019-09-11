@@ -1,0 +1,18 @@
+{
+  "name": "licensespring/paypal",
+  "description": "LicenseSpring-PayPal integration with PHP backend.",
+  "type": "library",
+  "keywords": ["licensespring", "paypal", "integration", "licensing"],
+  "license": "MIT",
+  "authors": [
+      {
+          "name": "Petar Jalušić",
+          "role": "Developer"
+      }
+  ],
+  "autoload": {
+      "psr-4": {
+          "LicenseSpring\\": "src/LicenseSpring"
+      }
+  }
+}
