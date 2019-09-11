@@ -5,7 +5,7 @@ require_once('Helpers.php');
 
 class Webhook {
 
-    private $api_key, $secret_key;
+    private $uuid, $shared_key;
 
     private static $order_successful_msg = "License keys successfuly activated.";
     private static $order_error_msg = "There was a problem activating your license keys. Please contact LicenseSpring.";
@@ -17,10 +17,10 @@ class Webhook {
 
     private $helpers;
 
-    function __construct($api_key, $secret_key, $isDebug = false) {
-        $this->api_key = $api_key;
-        $this->secret_key = $secret_key;
-        $this->helpers = new Helpers($api_key, $secret_key, self::getApiHost($isDebug));
+    function __construct($uuid, $shared_key, $isDebug = false) {
+        $this->uuid = $uuid;
+        $this->shared_key = $shared_key;
+        $this->helpers = new Helpers($uuid, $shared_key, self::getApiHost($isDebug));
     }
 
     private static function getApiHost($isDebug) {

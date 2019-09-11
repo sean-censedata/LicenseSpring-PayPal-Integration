@@ -4,22 +4,22 @@ namespace LicenseSpring;
 
 class Helpers {
 
-  private $api_key, $secret_key;
+  private $uuid, $shared_key;
 
   private static $backoff_steps = 10, $backoff_wait_time = 100; # in miliseconds
 
   private $api_host;
 
-  function __construct($api_key, $secret_key, $api_host) {
-      $this->api_key = $api_key;
-      $this->secret_key = $secret_key;
+  function __construct($uuid, $shared_key, $api_host) {
+      $this->uuid = $uuid;
+      $this->shared_key = $shared_key;
       $this->api_host = $api_host;
   }
 
 
   private function sign($datestamp) {
     $data = "licenseSpring\ndate: $datestamp";
-    $hashed = hash_hmac('sha256', $data, $this->secret_key, $raw_output = true);
+    $hashed = hash_hmac('sha256', $data, $this->shared_key, $raw_output = true);
     return base64_encode($hashed);
   }
 
@@ -31,7 +31,7 @@ class Helpers {
         'algorithm="hmac-sha256"',
         'headers="date"',
         strtr('signature="@key"', ["@key" => $signing_key]),
-        strtr('apiKey="@key"', ["@key" => $this->api_key]),
+        strtr('apiKey="@key"', ["@key" => $this->uuid]),
     );
     return array(
         'Date: ' . $date_header, 
